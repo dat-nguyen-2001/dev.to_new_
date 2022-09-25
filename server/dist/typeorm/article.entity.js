@@ -44,6 +44,10 @@ __decorate([
     __metadata("design:type", String)
 ], Article.prototype, "tags", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Article.prototype, "coverImage", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => comment_entity_1.Comment, comment => comment.article, { eager: true }),
     __metadata("design:type", Array)
 ], Article.prototype, "comments", void 0);

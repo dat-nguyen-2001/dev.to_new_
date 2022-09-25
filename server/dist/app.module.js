@@ -34,7 +34,7 @@ AppModule = __decorate([
                 }),
                 inject: [config_1.ConfigService],
             }),
-            articles_module_1.PostsModule,
+            articles_module_1.ArticlesModule,
         ],
         controllers: [],
         providers: []

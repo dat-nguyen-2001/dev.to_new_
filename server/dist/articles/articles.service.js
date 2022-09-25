@@ -24,6 +24,7 @@ let ArticlesService = class ArticlesService {
         newArticle.reactions = 0;
         newArticle.comments = [];
         newArticle.listed_user = [];
+        newArticle.coverImage = null;
         return await newArticle.save();
     }
 };

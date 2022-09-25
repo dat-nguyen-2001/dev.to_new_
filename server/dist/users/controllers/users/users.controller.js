@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const users_dtos_1 = require("../../users.dtos");
+const auth_credentials_dto_1 = require("../../../dtos/auth-credentials.dto");
 const users_service_1 = require("../../services/users/users.service");
 let UsersController = class UsersController {
     constructor(userService) {
@@ -23,8 +23,11 @@ let UsersController = class UsersController {
     async getUsers() {
         return await this.userService.getUsers();
     }
-    async createPost(createUserDto) {
-        return await this.userService.createUser(createUserDto);
+    async signUp(authCredentialsDto) {
+        return await this.userService.signUp(authCredentialsDto);
+    }
+    async signIn(authCredentialsDto) {
+        return await this.userService.signIn(authCredentialsDto);
     }
 };
 __decorate([
@@ -34,13 +37,21 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getUsers", null);
 __decorate([
-    (0, common_1.Post)('create'),
+    (0, common_1.Post)('signup'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [users_dtos_1.CreateUserDto]),
+    __metadata("design:paramtypes", [auth_credentials_dto_1.AuthCredentialsDto]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "createPost", null);
+], UsersController.prototype, "signUp", null);
+__decorate([
+    (0, common_1.Post)('signin'),
+    (0, common_1.UsePipes)(common_1.ValidationPipe),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [auth_credentials_dto_1.AuthCredentialsDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "signIn", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

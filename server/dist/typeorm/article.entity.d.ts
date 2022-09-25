@@ -6,6 +6,7 @@ export declare class Article extends BaseEntity {
     title: string;
     content: string;
     tags: string;
+    coverImage: string | null;
     comments: Comment[];
     reactions: number;
     user: User;

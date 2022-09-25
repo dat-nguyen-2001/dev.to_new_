@@ -42,6 +42,12 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)({
+        nullable: false
+    }),
+    __metadata("design:type", String)
+], User.prototype, "salt", void 0);
+__decorate([
     (0, typeorm_1.ManyToMany)(() => article_entity_1.Article, article => article.listed_user),
     __metadata("design:type", Array)
 ], User.prototype, "reading_list", void 0);

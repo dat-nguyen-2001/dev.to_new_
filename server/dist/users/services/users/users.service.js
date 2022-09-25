@@ -5,28 +5,67 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const user_entity_1 = require("../../../typeorm/user.entity");
+const bcrypt = require("bcrypt");
+const jwt_1 = require("@nestjs/jwt");
 let UsersService = class UsersService {
+    constructor(jwtService) {
+        this.jwtService = jwtService;
+    }
+    async hashPassword(password, salt) {
+        return bcrypt.hash(password, salt);
+    }
     async getUsers() {
         return await user_entity_1.User.find();
     }
-    async createUser(createUserDto) {
-        const { username, email, password } = createUserDto;
+    async signUp(authCredentialsDto) {
+        const { email, password } = authCredentialsDto;
+        const existedUser = await user_entity_1.User.find({ where: { email } });
+        if (existedUser.length > 0) {
+            console.log("User already existed!");
+            return;
+        }
         const newUser = new user_entity_1.User();
-        newUser.username = username;
+        newUser.username = email.split('@')[0];
         newUser.email = email;
-        newUser.password = password;
+        newUser.salt = await bcrypt.genSalt();
+        newUser.password = await this.hashPassword(password, newUser.salt);
         newUser.reading_list = [];
         newUser.articles = [];
         newUser.comments = [];
-        return await newUser.save();
+        try {
+            await newUser.save();
+            console.log('User Created!');
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    async signIn(authCredentailDto) {
+        const { email, password } = authCredentailDto;
+        const res = await user_entity_1.User.find({ where: { email } });
+        if (!res.length) {
+            throw new common_1.NotFoundException('User not found!');
+        }
+        const user = res[0];
+        const hashedEnteredPassword = await this.hashPassword(password, user.salt);
+        if (hashedEnteredPassword !== user.password) {
+            throw new common_1.NotFoundException('Wrong password');
+        }
+        const payload = { email };
+        const accessToken = await this.jwtService.sign(payload);
+        return { accessToken };
     }
 };
 UsersService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [jwt_1.JwtService])
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map
