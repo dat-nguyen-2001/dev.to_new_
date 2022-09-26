@@ -59,7 +59,7 @@ let UsersService = class UsersService {
             throw new common_1.NotFoundException('Wrong password');
         }
         const payload = { email };
-        const accessToken = await this.jwtService.sign(payload);
+        const accessToken = await this.jwtService.sign(payload, { expiresIn: '3600s', secret: process.env.ACCESS_TOKEN_SECRET });
         return { accessToken };
     }
 };

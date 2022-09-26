@@ -23,8 +23,8 @@ let ArticlesController = class ArticlesController {
     getArticles() {
         return this.articlesService.getArticles();
     }
-    createArticle(createArticleDto) {
-        return this.articlesService.createArticle(createArticleDto);
+    createArticle(req, createArticleDto) {
+        return this.articlesService.createArticle(req, createArticleDto);
     }
 };
 __decorate([
@@ -36,9 +36,10 @@ __decorate([
 __decorate([
     (0, common_1.Post)('create'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [articles_dto_1.CreateArticleDto]),
+    __metadata("design:paramtypes", [Object, articles_dto_1.CreateArticleDto]),
     __metadata("design:returntype", void 0)
 ], ArticlesController.prototype, "createArticle", null);
 ArticlesController = __decorate([

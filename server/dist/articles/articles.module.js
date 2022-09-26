@@ -12,13 +12,23 @@ const common_1 = require("@nestjs/common");
 const articles_controller_1 = require("./articles.controller");
 const articles_service_1 = require("./articles.service");
 const typeorm_2 = require("../typeorm");
+const passport_1 = require("@nestjs/passport");
+const jwt_1 = require("@nestjs/jwt");
+const jwt_strategy_1 = require("../users/jwt.strategy");
 let ArticlesModule = class ArticlesModule {
 };
 ArticlesModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([typeorm_2.Article])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([typeorm_2.Article]), passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
+            jwt_1.JwtModule.register({
+                secret: "datlinh1",
+                signOptions: {
+                    expiresIn: 3600
+                }
+            })],
         controllers: [articles_controller_1.ArticlesController],
-        providers: [articles_service_1.ArticlesService]
+        providers: [articles_service_1.ArticlesService, jwt_strategy_1.JwtStrategy],
+        exports: [jwt_strategy_1.JwtStrategy, passport_1.PassportModule]
     })
 ], ArticlesModule);
 exports.ArticlesModule = ArticlesModule;
