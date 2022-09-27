@@ -10,5 +10,6 @@ export declare class Article extends BaseEntity {
     comments: Comment[];
     reactions: number;
     user: User;
-    listed_user: User[];
+    userId: number;
+    listed_users: User[];
 }

@@ -22,7 +22,9 @@ let UsersService = class UsersService {
         return bcrypt.hash(password, salt);
     }
     async getUsers() {
-        return await user_entity_1.User.find();
+        return await user_entity_1.User.find({ relations: {
+                reading_list: true
+            } });
     }
     async signUp(authCredentialsDto) {
         const { email, password } = authCredentialsDto;

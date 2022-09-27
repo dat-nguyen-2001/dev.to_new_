@@ -63,9 +63,13 @@ __decorate([
     __metadata("design:type", user_entity_1.User)
 ], Article.prototype, "user", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Article.prototype, "userId", void 0);
+__decorate([
     (0, typeorm_1.ManyToMany)(() => user_entity_1.User, user => user.reading_list),
     __metadata("design:type", Array)
-], Article.prototype, "listed_user", void 0);
+], Article.prototype, "listed_users", void 0);
 Article = __decorate([
     (0, typeorm_1.Entity)()
 ], Article);

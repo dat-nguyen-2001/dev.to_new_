@@ -18,7 +18,12 @@ let ArticlesService = class ArticlesService {
         this.jwtService = jwtService;
     }
     async getArticles() {
-        const allArticles = await typeorm_1.Article.find();
+        const allArticles = await typeorm_1.Article.find({
+            relations: {
+                listed_users: true,
+                user: true
+            }
+        });
         return allArticles;
     }
     async createArticle(req, createArticleDto) {
@@ -35,10 +40,12 @@ let ArticlesService = class ArticlesService {
         newArticle.title = title;
         newArticle.content = content;
         newArticle.tags = tags;
-        newArticle.user = await typeorm_1.User.findOne({ where: { email } });
+        const user = await typeorm_1.User.findOne({ where: { email } });
+        newArticle.user = user;
+        newArticle.userId = user.id;
         newArticle.reactions = 0;
         newArticle.comments = [];
-        newArticle.listed_user = [];
+        newArticle.listed_users = [];
         newArticle.coverImage = '';
         return await newArticle.save();
     }

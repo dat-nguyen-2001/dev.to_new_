@@ -48,7 +48,8 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "salt", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => article_entity_1.Article, article => article.listed_user),
+    (0, typeorm_1.ManyToMany)(() => article_entity_1.Article, article => article.listed_users, { cascade: true }),
+    (0, typeorm_1.JoinTable)({ name: "reading_list" }),
     __metadata("design:type", Array)
 ], User.prototype, "reading_list", void 0);
 __decorate([
