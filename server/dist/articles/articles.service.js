@@ -27,7 +27,7 @@ let ArticlesService = class ArticlesService {
         return allArticles;
     }
     async createArticle(req, createArticleDto) {
-        const { title, content, tags } = createArticleDto;
+        const { title, content, tags, coverImage } = createArticleDto;
         const authorizationHeader = req.headers['authorization'];
         const token = authorizationHeader.split(' ')[1];
         if (!token) {
@@ -46,7 +46,7 @@ let ArticlesService = class ArticlesService {
         newArticle.reactions = 0;
         newArticle.comments = [];
         newArticle.listed_users = [];
-        newArticle.coverImage = '';
+        newArticle.coverImage = coverImage;
         return await newArticle.save();
     }
 };

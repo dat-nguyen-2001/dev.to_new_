@@ -25,5 +25,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateArticleDto.prototype, "tags", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateArticleDto.prototype, "coverImage", void 0);
 exports.CreateArticleDto = CreateArticleDto;
 //# sourceMappingURL=articles.dto.js.map
