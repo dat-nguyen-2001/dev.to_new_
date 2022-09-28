@@ -21,10 +21,11 @@ let UsersService = class UsersService {
     async hashPassword(password, salt) {
         return bcrypt.hash(password, salt);
     }
-    async getUsers() {
-        return await user_entity_1.User.find({ relations: {
-                reading_list: true
-            } });
+    async getUserInfo(username) {
+        return await user_entity_1.User.find({
+            select: { 'username': true, "articles": true, "reading_list": true, "profile_pic": true },
+            where: { username },
+        });
     }
     async signUp(authCredentialsDto) {
         const { email, password } = authCredentialsDto;
@@ -41,6 +42,7 @@ let UsersService = class UsersService {
         newUser.reading_list = [];
         newUser.articles = [];
         newUser.comments = [];
+        newUser.profile_pic = '';
         try {
             await newUser.save();
             console.log('User Created!');

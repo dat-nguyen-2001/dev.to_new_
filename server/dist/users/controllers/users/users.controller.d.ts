@@ -4,7 +4,7 @@ import { User } from 'src/typeorm';
 export declare class UsersController {
     private readonly userService;
     constructor(userService: UsersService);
-    getUsers(): Promise<User[]>;
+    getUserInfo(username: string): Promise<User[]>;
     signUp(authCredentialsDto: AuthCredentialsDto): Promise<void>;
     signIn(authCredentialsDto: AuthCredentialsDto): Promise<{
         accessToken: string;

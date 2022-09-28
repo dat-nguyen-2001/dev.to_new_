@@ -6,5 +6,6 @@ export declare class ArticlesService {
     private jwtService;
     constructor(jwtService: JwtService);
     getArticles(): Promise<Article[]>;
+    getArticlesByUser(username: string): Promise<Article[]>;
     createArticle(req: Request, createArticleDto: CreateArticleDto): Promise<Article>;
 }

@@ -20,8 +20,8 @@ let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
     }
-    async getUsers() {
-        return await this.userService.getUsers();
+    async getUserInfo(username) {
+        return await this.userService.getUserInfo(username);
     }
     async signUp(authCredentialsDto) {
         return await this.userService.signUp(authCredentialsDto);
@@ -31,11 +31,12 @@ let UsersController = class UsersController {
     }
 };
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/:username'),
+    __param(0, (0, common_1.Param)('username')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "getUsers", null);
+], UsersController.prototype, "getUserInfo", null);
 __decorate([
     (0, common_1.Post)('signup'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),

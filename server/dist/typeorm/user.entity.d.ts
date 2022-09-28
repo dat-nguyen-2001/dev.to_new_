@@ -7,6 +7,7 @@ export declare class User extends BaseEntity {
     email: string;
     password: string;
     salt: string;
+    profile_pic: string;
     reading_list: Article[];
     articles: Article[];
     comments: Comment[];

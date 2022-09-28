@@ -20,19 +20,29 @@ let ArticlesController = class ArticlesController {
     constructor(articlesService) {
         this.articlesService = articlesService;
     }
-    getArticles() {
-        return this.articlesService.getArticles();
+    async getArticles() {
+        return await this.articlesService.getArticles();
     }
-    createArticle(req, createArticleDto) {
-        return this.articlesService.createArticle(req, createArticleDto);
+    async getArticlesByUser(username) {
+        return await this.articlesService.getArticlesByUser(username);
+    }
+    async createArticle(req, createArticleDto) {
+        return await this.articlesService.createArticle(req, createArticleDto);
     }
 };
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "getArticles", null);
+__decorate([
+    (0, common_1.Get)('/:username'),
+    __param(0, (0, common_1.Param)('username')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ArticlesController.prototype, "getArticlesByUser", null);
 __decorate([
     (0, common_1.Post)('create'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
@@ -40,7 +50,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, articles_dto_1.CreateArticleDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "createArticle", null);
 ArticlesController = __decorate([
     (0, common_1.Controller)('articles'),

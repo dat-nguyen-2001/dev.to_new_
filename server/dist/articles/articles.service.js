@@ -26,6 +26,17 @@ let ArticlesService = class ArticlesService {
         });
         return allArticles;
     }
+    async getArticlesByUser(username) {
+        const articles = await typeorm_1.Article.find({
+            where: {
+                user: { username: username }
+            },
+            relations: {
+                user: true
+            }
+        });
+        return articles;
+    }
     async createArticle(req, createArticleDto) {
         const { title, content, tags, coverImage } = createArticleDto;
         const authorizationHeader = req.headers['authorization'];
