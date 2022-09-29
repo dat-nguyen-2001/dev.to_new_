@@ -45,7 +45,7 @@ let UsersService = class UsersService {
         newUser.profile_pic = '';
         try {
             await newUser.save();
-            console.log('User Created!');
+            return true;
         }
         catch (err) {
             console.log(err);

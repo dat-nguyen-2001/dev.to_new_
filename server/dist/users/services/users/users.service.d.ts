@@ -6,7 +6,7 @@ export declare class UsersService {
     constructor(jwtService: JwtService);
     private hashPassword;
     getUserInfo(username: string): Promise<User[]>;
-    signUp(authCredentialsDto: AuthCredentialsDto): Promise<void>;
+    signUp(authCredentialsDto: AuthCredentialsDto): Promise<boolean>;
     signIn(authCredentailDto: AuthCredentialsDto): Promise<{
         accessToken: string;
     }>;

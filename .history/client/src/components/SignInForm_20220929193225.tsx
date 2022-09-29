@@ -10,14 +10,20 @@ interface Inputs {
     email: string,
     password: string
 }
-function SignInForm() {
+
+interface Prop {
+    status: string
+}
+function SignInForm({status} : Prop) {
     const navigate = useNavigate()
     const [username, setUsername] = useRecoilState(usernameState)
     const { register, handleSubmit } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+        if(status === 'signin') {
+            
+        }
         const accessToken = await signIn(email, password);
-        console.log(accessToken);
         //User store token for authorizations
         if (accessToken !== null) {
             sessionStorage.setItem('accessToken', accessToken)
@@ -38,7 +44,7 @@ function SignInForm() {
                 <label className="font-semibold flex">Password</label>
                 <input type="password" className="registerInput" {...register("password", { required: true })} />
             </div>
-            <button className=" bg-[blue]/70 hover:bg-[blue] text-lg text-white font-semibold py-3 rounded-md">Continue</button>
+            <button className=" bg-[blue]/70 hover:bg-[blue] text-lg text-white font-semibold py-3 rounded-md">{status === 'signin' ? 'Continue': 'Register'}</button>
         </form>
     );
 }
