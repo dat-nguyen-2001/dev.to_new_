@@ -64,7 +64,7 @@ const New = () => {
         register,
         handleSubmit,
     } = useForm<ArticleInfo>();
-    const {createArticle} = articlesApi
+
     const onSubmit: SubmitHandler<ArticleInfo> = async ({ title, content }) => {
         if (tagsValue === '') {
             alert('Your post should contain at least 1 tag!')

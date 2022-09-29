@@ -1,11 +1,11 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
-// import signIn from "../utils/signIn";
+import signIn from "../utils/signIn";
 import { useNavigate } from 'react-router-dom';
 import usersApi from "../api/users.api";
 import { useRecoilState } from 'recoil';
 import { usernameState } from "../atoms/usernameAtom";
-// import signUp from "../utils/signUp";
+import signUp from "../utils/signUp";
 
 
 interface Inputs {
@@ -17,7 +17,7 @@ interface Prop {
     status: string
 }
 
-const {signIn, signUp} = usersApi
+const {sign}
 
 function EnterForm({ status }: Prop) {
     const navigate = useNavigate()

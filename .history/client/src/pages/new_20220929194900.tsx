@@ -17,7 +17,7 @@ import { useRecoilValue } from 'recoil'
 import { usernameState } from '../atoms/usernameAtom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import articlesApi from '../api/articles.api'
+import createArticle from '../utils/createArticle';
 
 const axios = require('axios').default;
 
@@ -64,7 +64,7 @@ const New = () => {
         register,
         handleSubmit,
     } = useForm<ArticleInfo>();
-    const {createArticle} = articlesApi
+
     const onSubmit: SubmitHandler<ArticleInfo> = async ({ title, content }) => {
         if (tagsValue === '') {
             alert('Your post should contain at least 1 tag!')

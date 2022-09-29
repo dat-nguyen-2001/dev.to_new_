@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-// import getUserInfo from "../utils/getUserInfo";
+import getUserInfo from "../utils/getUserInfo";
 import { useState, useEffect } from 'react'
 import Layout from "../components/Layout";
 import ArticleBlock from "../components/ArticleBlock";
@@ -8,7 +8,7 @@ import articlesApi from "../api/articles.api";
 
 
 const {getArticlesByUser} = articlesApi;
-const {getUserInfo} = usersApi
+const {get}
 
 function User() {
 

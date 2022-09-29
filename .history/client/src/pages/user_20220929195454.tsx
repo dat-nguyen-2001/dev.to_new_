@@ -1,18 +1,14 @@
 import { useParams } from "react-router-dom";
-// import getUserInfo from "../utils/getUserInfo";
+import getUserInfo from "../utils/getUserInfo";
 import { useState, useEffect } from 'react'
 import Layout from "../components/Layout";
 import ArticleBlock from "../components/ArticleBlock";
 import usersApi from "../api/users.api";
 import articlesApi from "../api/articles.api";
-
-
-const {getArticlesByUser} = articlesApi;
-const {getUserInfo} = usersApi
-
 function User() {
 
     // Get the user info
+    const {getArticlesByUser} = articlesApi
     let { username } = useParams();
     const [user, setUser] = useState<any>(null);
     const [profile_pic, setProfilePic] = useState<string>('');
