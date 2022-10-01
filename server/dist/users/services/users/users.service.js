@@ -32,7 +32,7 @@ let UsersService = class UsersService {
         const existedUser = await user_entity_1.User.find({ where: { email } });
         if (existedUser.length > 0) {
             console.log("User already existed!");
-            return;
+            return false;
         }
         const newUser = new user_entity_1.User();
         newUser.username = email.split('@')[0];
@@ -49,6 +49,7 @@ let UsersService = class UsersService {
         }
         catch (err) {
             console.log(err);
+            return false;
         }
     }
     async signIn(authCredentailDto) {
