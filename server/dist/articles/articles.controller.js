@@ -44,7 +44,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "getArticlesByUser", null);
 __decorate([
-    (0, common_1.Post)('create'),
+    (0, common_1.Post)('/create'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Body)()),
