@@ -13,11 +13,25 @@ exports.ArticlesService = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
 const typeorm_1 = require("../typeorm");
+const typeorm_2 = require("typeorm");
 let ArticlesService = class ArticlesService {
     constructor(jwtService) {
         this.jwtService = jwtService;
     }
-    async getArticles() {
+    async getArticles(req) {
+        const tag = req.query.tag;
+        if (tag) {
+            const articles = await typeorm_1.Article.find({
+                where: {
+                    tags: (0, typeorm_2.Like)(`%${tag}%`)
+                },
+                relations: {
+                    user: true,
+                    listed_users: true
+                }
+            });
+            return articles;
+        }
         const allArticles = await typeorm_1.Article.find({
             relations: {
                 listed_users: true,

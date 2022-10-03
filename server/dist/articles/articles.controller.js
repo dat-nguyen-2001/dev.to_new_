@@ -20,8 +20,8 @@ let ArticlesController = class ArticlesController {
     constructor(articlesService) {
         this.articlesService = articlesService;
     }
-    async getArticles() {
-        return await this.articlesService.getArticles();
+    async getArticles(req) {
+        return await this.articlesService.getArticles(req);
     }
     async getArticlesByUser(username) {
         return await this.articlesService.getArticlesByUser(username);
@@ -32,8 +32,9 @@ let ArticlesController = class ArticlesController {
 };
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "getArticles", null);
 __decorate([
