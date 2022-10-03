@@ -32,7 +32,8 @@ let ArticlesService = class ArticlesService {
                 user: { username: username }
             },
             relations: {
-                user: true
+                user: true,
+                listed_users: true
             }
         });
         return articles;
