@@ -29,6 +29,9 @@ let ArticlesController = class ArticlesController {
     async createArticle(req, createArticleDto) {
         return await this.articlesService.createArticle(req, createArticleDto);
     }
+    async likeArticle(title) {
+        return await this.articlesService.likeArticle(title);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -53,6 +56,13 @@ __decorate([
     __metadata("design:paramtypes", [Object, articles_dto_1.CreateArticleDto]),
     __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "createArticle", null);
+__decorate([
+    (0, common_1.Put)('/like/:title'),
+    __param(0, (0, common_1.Param)('title')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ArticlesController.prototype, "likeArticle", null);
 ArticlesController = __decorate([
     (0, common_1.Controller)('articles'),
     __metadata("design:paramtypes", [articles_service_1.ArticlesService])

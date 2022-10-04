@@ -8,4 +8,5 @@ export declare class ArticlesController {
     getArticles(req: Request): Promise<Article[]>;
     getArticlesByUser(username: string): Promise<Article[]>;
     createArticle(req: Request, createArticleDto: CreateArticleDto): Promise<Article>;
+    likeArticle(title: string): Promise<void>;
 }

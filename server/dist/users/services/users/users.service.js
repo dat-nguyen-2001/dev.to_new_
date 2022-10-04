@@ -23,15 +23,16 @@ let UsersService = class UsersService {
     }
     async getUserInfo(username) {
         return await user_entity_1.User.find({
-            select: { 'username': true, "articles": true, "reading_list": true, "profile_pic": true },
+            select: { 'username': true, "articles": true, "profile_pic": true },
             where: { username },
+            relations: { reading_list: true }
         });
     }
     async signUp(authCredentialsDto) {
         const { email, password } = authCredentialsDto;
         const existedUser = await user_entity_1.User.find({ where: { email } });
         if (existedUser.length > 0) {
-            console.log("User already existed!");
+            alert("User already existed!");
             return false;
         }
         const newUser = new user_entity_1.User();
@@ -48,7 +49,7 @@ let UsersService = class UsersService {
             return true;
         }
         catch (err) {
-            console.log(err);
+            alert(err);
             return false;
         }
     }

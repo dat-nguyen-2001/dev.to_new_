@@ -75,6 +75,11 @@ let ArticlesService = class ArticlesService {
         newArticle.coverImage = coverImage;
         return await newArticle.save();
     }
+    async likeArticle(title) {
+        const article = await typeorm_1.Article.findOne({ where: { title } });
+        article.reactions += 1;
+        await article.save();
+    }
 };
 ArticlesService = __decorate([
     (0, common_1.Injectable)(),
