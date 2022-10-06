@@ -29,6 +29,10 @@ let UsersController = class UsersController {
     async signIn(authCredentialsDto) {
         return await this.userService.signIn(authCredentialsDto);
     }
+    async changeProfilePicture(body) {
+        const { username, url } = body;
+        return await this.userService.changeProfilePicture(username, url);
+    }
 };
 __decorate([
     (0, common_1.Get)('/:username'),
@@ -53,6 +57,13 @@ __decorate([
     __metadata("design:paramtypes", [auth_credentials_dto_1.AuthCredentialsDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signIn", null);
+__decorate([
+    (0, common_1.Post)('profile'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "changeProfilePicture", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

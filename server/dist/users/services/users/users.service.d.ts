@@ -10,4 +10,5 @@ export declare class UsersService {
     signIn(authCredentailDto: AuthCredentialsDto): Promise<{
         accessToken: string;
     }>;
+    changeProfilePicture(username: string, url: string): Promise<void>;
 }

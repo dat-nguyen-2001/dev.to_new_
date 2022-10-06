@@ -81,7 +81,6 @@ const ArticlePage = () => {
                         <div className='font-bold text-2xl md:pl-10'>{article.title}</div>
                         <div className='flex space-x-3 md:pl-10'>
                             {tagsList.map((tag: string) => (
-                                // Set a random background color for a tag
                                 <div className={`px-2 py-1 rounded flex space-x-2 bg-[#e5e5e5]`}>
                                     <a href={`../?tag=${tag}`} className="cursor-pointer">#{tag}</a>
                                 </div>
@@ -107,7 +106,7 @@ const ArticlePage = () => {
                                     {otherArticles.map((article: any) => (
                                         <div className='border-t-[1px] mt-3'>
                                             <a href={`/${article.user.username}/${article.title}`} className='text-lg text-[gray] hover:text-blue-800 cursor-pointer'>{article.title}</a>
-                                            <div>
+                                            <div className='flex space-x-1'>
                                                 {article.tags.split(',').map((tag: string) => (
                                                     <div >#{tag}  </div>
                                                 ))}

@@ -68,6 +68,13 @@ let UsersService = class UsersService {
         const accessToken = await this.jwtService.sign(payload, { expiresIn: '3600s', secret: process.env.ACCESS_TOKEN_SECRET });
         return { accessToken };
     }
+    async changeProfilePicture(username, url) {
+        const user = await user_entity_1.User.findOne({
+            where: { username }
+        });
+        user.profile_pic = url;
+        await user.save();
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),

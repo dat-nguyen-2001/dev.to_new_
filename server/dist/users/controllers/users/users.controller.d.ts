@@ -9,4 +9,8 @@ export declare class UsersController {
     signIn(authCredentialsDto: AuthCredentialsDto): Promise<{
         accessToken: string;
     }>;
+    changeProfilePicture(body: {
+        username: string;
+        url: string;
+    }): Promise<void>;
 }
