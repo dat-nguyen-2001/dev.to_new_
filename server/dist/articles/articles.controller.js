@@ -32,6 +32,9 @@ let ArticlesController = class ArticlesController {
     async likeArticle(title) {
         return await this.articlesService.likeArticle(title);
     }
+    async saveArticle(req, id) {
+        return await this.articlesService.saveArticle(req, id);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -63,6 +66,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ArticlesController.prototype, "likeArticle", null);
+__decorate([
+    (0, common_1.Put)('/save/:id'),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number]),
+    __metadata("design:returntype", Promise)
+], ArticlesController.prototype, "saveArticle", null);
 ArticlesController = __decorate([
     (0, common_1.Controller)('articles'),
     __metadata("design:paramtypes", [articles_service_1.ArticlesService])

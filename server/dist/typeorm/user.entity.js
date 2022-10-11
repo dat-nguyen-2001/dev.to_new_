@@ -43,7 +43,7 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)({
-        nullable: false
+        nullable: false,
     }),
     __metadata("design:type", String)
 ], User.prototype, "salt", void 0);

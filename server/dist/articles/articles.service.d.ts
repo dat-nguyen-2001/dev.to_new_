@@ -9,4 +9,5 @@ export declare class ArticlesService {
     getArticlesByUser(username: string): Promise<Article[]>;
     createArticle(req: Request, createArticleDto: CreateArticleDto): Promise<Article>;
     likeArticle(title: string): Promise<void>;
+    saveArticle(req: Request, id: number): Promise<void>;
 }

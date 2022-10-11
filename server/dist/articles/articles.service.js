@@ -80,6 +80,20 @@ let ArticlesService = class ArticlesService {
         article.reactions += 1;
         await article.save();
     }
+    async saveArticle(req, id) {
+        const authorizationHeader = req.headers['authorization'];
+        const token = authorizationHeader.split(' ')[1];
+        if (!token) {
+            console.log('Can not get token');
+            return;
+        }
+        const data = await this.jwtService.verify(token, { secret: process.env.ACCESS_TOKEN_SECRET });
+        const email = data.email;
+        const user = await typeorm_1.User.findOne({ where: { email }, relations: { reading_list: true } });
+        const article = await typeorm_1.Article.findOne({ where: { id } });
+        user.reading_list.push(article);
+        await user.save();
+    }
 };
 ArticlesService = __decorate([
     (0, common_1.Injectable)(),
