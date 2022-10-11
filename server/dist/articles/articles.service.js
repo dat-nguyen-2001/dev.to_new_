@@ -90,7 +90,8 @@ let ArticlesService = class ArticlesService {
         const data = await this.jwtService.verify(token, { secret: process.env.ACCESS_TOKEN_SECRET });
         const email = data.email;
         const user = await typeorm_1.User.findOne({ where: { email }, relations: { reading_list: true } });
-        const article = await typeorm_1.Article.findOne({ where: { id }, relations: { listed_users: true } });
+        const article = await typeorm_1.Article.findOne({ where: { id }, relations: { user: true, listed_users: true } });
+        console.log(article);
         const articleExisted = user.reading_list.map(article => article.id).includes(article.id);
         console.log(articleExisted);
         if (articleExisted) {

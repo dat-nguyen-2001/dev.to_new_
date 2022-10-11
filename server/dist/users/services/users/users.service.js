@@ -25,7 +25,9 @@ let UsersService = class UsersService {
         return await user_entity_1.User.find({
             select: { 'username': true, "articles": true, "profile_pic": true },
             where: { username },
-            relations: { reading_list: true }
+            relations: { reading_list: {
+                    user: true
+                } }
         });
     }
     async signUp(authCredentialsDto) {
