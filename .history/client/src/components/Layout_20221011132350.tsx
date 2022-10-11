@@ -16,6 +16,7 @@ const Layout = ({ children, title }: Props) => (
     </head>
     <div className="overflow-x-hidden">
       <NavBar />
+
     </div>
     <body>
       <div className='mt-5'>

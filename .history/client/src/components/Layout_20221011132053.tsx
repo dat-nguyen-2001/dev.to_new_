@@ -14,9 +14,7 @@ const Layout = ({ children, title }: Props) => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </head>
-    <div className="overflow-x-hidden">
-      <NavBar />
-    </div>
+    <NavBar />
     <body>
       <div className='mt-5'>
         {children}

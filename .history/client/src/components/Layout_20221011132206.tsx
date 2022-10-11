@@ -12,20 +12,18 @@ const Layout = ({ children, title }: Props) => (
     <head>
       <title>{title}</title>
       <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="viewport" content="initial-scale=1.0" />
     </head>
-    <div className="overflow-x-hidden">
-      <NavBar />
-    </div>
+    <NavBar />
     <body>
       <div className='mt-5'>
         {children}
       </div>
     </body>
-    <br></br>
+    {/* <br></br>
     <div className='bg-[#e5e5e5] relative bottom-0 w-full max-h-[150px] pt-3 pb-10 mt-[75px]'>
       <Footer />
-    </div>
+    </div> */}
   </>
 )
 
