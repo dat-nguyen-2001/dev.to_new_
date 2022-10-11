@@ -81,7 +81,7 @@ let ArticlesService = class ArticlesService {
         await article.save();
     }
     async saveArticle(req, id) {
-        const authorizationHeader = req.headers['authorization'];
+        const authorizationHeader = req.headers['authorization'] === undefined ? req.body.headers.Authorization : req.headers['authorization'];
         const token = authorizationHeader.split(' ')[1];
         if (!token) {
             console.log('Can not get token');
@@ -90,9 +90,20 @@ let ArticlesService = class ArticlesService {
         const data = await this.jwtService.verify(token, { secret: process.env.ACCESS_TOKEN_SECRET });
         const email = data.email;
         const user = await typeorm_1.User.findOne({ where: { email }, relations: { reading_list: true } });
-        const article = await typeorm_1.Article.findOne({ where: { id } });
-        user.reading_list.push(article);
-        await user.save();
+        const article = await typeorm_1.Article.findOne({ where: { id }, relations: { listed_users: true } });
+        const articleExisted = user.reading_list.map(article => article.id).includes(article.id);
+        console.log(articleExisted);
+        if (articleExisted) {
+            const index = user.reading_list.indexOf(article);
+            user.reading_list.splice(index, 1);
+            await user.save();
+            console.log('Removed');
+        }
+        else {
+            user.reading_list.push(article);
+            await user.save();
+            console.log('Added');
+        }
     }
 };
 ArticlesService = __decorate([
