@@ -31,10 +31,12 @@ const HomePage = () => {
 
   function handleSortByLatest() {
     setSortByLatest(true)
+    setArticles(articles => sortLatest(articles))
   }
 
   function handleSortByPopularity() {
     setSortByLatest(false)
+    setArticles(articles => sortPopularity(articles))
   }
 
   useEffect(() => {

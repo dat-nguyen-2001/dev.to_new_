@@ -8,7 +8,7 @@ const ReadingListBlock = ({ article }: any) => {
     return (
         <div className="flex space-x-2 px-3 bg-white rounded-md mx-auto border-[#d3d3d3] border-[.2px] pb-3 pt-2">
             <div className="min-w-[30px] min-h-[30px] max-w-[35px] max-h-[35px] rounded-full">
-                <img src={article.user.profile_pic ? article.user.profile_pic : 'https://www.transparentpng.com/thumb/user/gray-user-profile-icon-png-fP8Q1P.png'} className='rounded-full w-8 h-8' />
+                <img src={article.user.profile_pic ? article.user.profile_pic : 'https://www.transparentpng.com/thumb/user/gray-user-profile-icon-png-fP8Q1P.png'} className='rounded-full ' />
             </div>
             <div className='flex flex-col space-y-1'>
                 <a href={`/${article.user.username}/${article.title}`}>

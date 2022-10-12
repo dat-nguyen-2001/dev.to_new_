@@ -59,7 +59,8 @@ const UserNav = () => {
                         <div className='flex flex-col space-y-1'>
                             <a className='dropMenu'>Dash Board</a>
                             <div className='dropMenu' onClick={() => navigate(`/new`)}>Create Post</div>
-                            <div className='dropMenu' onClick={() => navigate(`/readinglist`)}>Reading List</div>
+                            <div className='dropMenu' onClick={() => navigate(`/readinglist`)}>Create Post</div>
+                            <a className='dropMenu'>Settings</a>
                         </div>
                         <div className='pb-2 space-y-1'>
                             <hr></hr>

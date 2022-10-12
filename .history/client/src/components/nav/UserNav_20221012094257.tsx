@@ -42,7 +42,7 @@ const UserNav = () => {
             </div>
             <div className='relative' tabIndex={0} onBlur={() => setOpenDropMenu(false)}>
                 <div className='w-8 h-8 rounded-full cursor-pointer hover:text-[blue]/70 hover:bg-[#e2e3f3]'>
-                    <img src={user && user.profile_pic !== '' && user.profile_pic !== undefined ? user.profile_pic : 'https://www.transparentpng.com/thumb/user/gray-user-profile-icon-png-fP8Q1P.png'} className='w-8 h-8 mt-1 rounded-full' onClick={() => setOpenDropMenu(prevState => !prevState)} />
+                    <img src={user && user.profile_pic !== '' && user.profile_pic !== undefined ? user.profile_pic : 'https://www.transparentpng.com/thumb/user/gray-user-profile-icon-png-fP8Q1P.png'} className='w-7 h-7 mt-1 rounded-full' onClick={() => setOpenDropMenu(prevState => !prevState)} />
                 </div>
                 {openDropMenu ?
                     <div className='flex flex-col space-y-3 absolute top-10 right-0 w-[250px] z-1 bg-white rounded border-[.1em] pt-2 px-2' >
@@ -59,7 +59,8 @@ const UserNav = () => {
                         <div className='flex flex-col space-y-1'>
                             <a className='dropMenu'>Dash Board</a>
                             <div className='dropMenu' onClick={() => navigate(`/new`)}>Create Post</div>
-                            <div className='dropMenu' onClick={() => navigate(`/readinglist`)}>Reading List</div>
+                            <a className='dropMenu'>Reading List</a>
+                            <a className='dropMenu'>Settings</a>
                         </div>
                         <div className='pb-2 space-y-1'>
                             <hr></hr>

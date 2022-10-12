@@ -26,33 +26,23 @@ const HomePage = () => {
     return data.sort(function(a: any,b: any){return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()})
   }
   const sortPopularity = (data: Array<any>) => {
-    return data.sort(function(a: any,b: any){return b.reactions - a.reactions})
+    return data.sort(function(a: any,b: any){return a.reactions - b.reactions})
   }
-
-  function handleSortByLatest() {
-    setSortByLatest(true)
-  }
-
-  function handleSortByPopularity() {
-    setSortByLatest(false)
-  }
-
   useEffect(() => {
     if(tag) {
       getArticlesByTag(tag).then(data => {
-        setArticles(sortByLatest ? sortLatest(data) : sortPopularity(data))
+        setArticles(sortLatest(data))
       })
     } else if(search) {
       getArticlesBySearch(search).then(data => {
-        setArticles(sortByLatest ? sortLatest(data) : sortPopularity(data))
+        setArticles(sortLatest(data))
       })
     } else {
       getArticles().then(data => {
-        setArticles(sortByLatest ? sortLatest(data) : sortPopularity(data))
+        setArticles(sortLatest(data))
       })
     }
-  }, [sortByLatest])
-
+  }, [])
   return (
     <Layout title="DEV Community 👩‍💻👨‍💻">
       <div className='md:grid grid-cols-7 lg:grid-cols-10 2xl:px-32'>
@@ -61,8 +51,8 @@ const HomePage = () => {
         </div>
         <div className='col-span-5 px-2'>
           <div className='flex space-x-2 text-[1.2rem] font-semibold'>
-            <div className={`cursor-pointer hover:text-blue-700 px-2 py-2 mb-2 sm:hover:bg-white rounded-md ${sortByLatest ? 'font-bold': ''}`} onClick={handleSortByLatest}>Latest</div>
-            <div className={`cursor-pointer hover:text-blue-700 px-2 py-2 mb-2 sm:hover:bg-white rounded-md ${!sortByLatest ? 'font-bold': ''}`} onClick={handleSortByPopularity}>Top</div>
+            <div className={`cursor-pointer hover:text-blue-700 px-2 py-2 mb-2 sm:hover:bg-white rounded-md ${sortByLatest ? 'font-bold': ''}`} onClick={() => handleSortByLatest}>Latest</div>
+            <div className={`cursor-pointer hover:text-blue-700 px-2 py-2 mb-2 sm:hover:bg-white rounded-md ${!sortByLatest ? 'font-bold': ''}`} onClick={() => setSortByLatest(false)}>Top</div>
           </div>
           <div className='flex flex-col space-y-2'>
             {articles.map(article => {

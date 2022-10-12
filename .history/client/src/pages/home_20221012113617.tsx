@@ -31,16 +31,18 @@ const HomePage = () => {
 
   function handleSortByLatest() {
     setSortByLatest(true)
+    setArticles(articles => sortLatest(articles))
   }
 
   function handleSortByPopularity() {
     setSortByLatest(false)
+    setArticles(articles => sortPopularity(articles))
   }
 
   useEffect(() => {
     if(tag) {
       getArticlesByTag(tag).then(data => {
-        setArticles(sortByLatest ? sortLatest(data) : sortPopularity(data))
+        setArticles(sortLatest(data))
       })
     } else if(search) {
       getArticlesBySearch(search).then(data => {

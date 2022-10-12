@@ -35,6 +35,7 @@ const HomePage = () => {
 
   function handleSortByPopularity() {
     setSortByLatest(false)
+    setArticles(articles => sortPopularity(articles))
   }
 
   useEffect(() => {

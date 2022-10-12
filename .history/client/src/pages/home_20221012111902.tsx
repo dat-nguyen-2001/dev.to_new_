@@ -26,32 +26,35 @@ const HomePage = () => {
     return data.sort(function(a: any,b: any){return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()})
   }
   const sortPopularity = (data: Array<any>) => {
-    return data.sort(function(a: any,b: any){return b.reactions - a.reactions})
+    return data.sort(function(a: any,b: any){return a.reactions - b.reactions})
   }
 
   function handleSortByLatest() {
     setSortByLatest(true)
+    setArticles(articles => sortLatest(articles))
+    window.location.reload()
   }
 
   function handleSortByPopularity() {
     setSortByLatest(false)
+    setArticles(articles => sortPopularity(articles))
   }
 
   useEffect(() => {
     if(tag) {
       getArticlesByTag(tag).then(data => {
-        setArticles(sortByLatest ? sortLatest(data) : sortPopularity(data))
+        setArticles(sortLatest(data))
       })
     } else if(search) {
       getArticlesBySearch(search).then(data => {
-        setArticles(sortByLatest ? sortLatest(data) : sortPopularity(data))
+        setArticles(sortLatest(data))
       })
     } else {
       getArticles().then(data => {
-        setArticles(sortByLatest ? sortLatest(data) : sortPopularity(data))
+        setArticles(sortLatest(data))
       })
     }
-  }, [sortByLatest])
+  }, [])
 
   return (
     <Layout title="DEV Community 👩‍💻👨‍💻">

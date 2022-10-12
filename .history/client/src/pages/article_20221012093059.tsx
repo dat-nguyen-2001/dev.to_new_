@@ -131,7 +131,7 @@ const ArticlePage = () => {
                                     {otherArticles.map((article: any) => (
                                         <div className='border-t-[1px] mt-3'>
                                             <a href={`/${article.user.username}/${article.title}`} className='text-lg text-[gray] hover:text-blue-800 cursor-pointer'>{article.title}</a>
-                                            <div className='flex space-x-1 flex-wrap'>
+                                            <div className='flex space-x-1 '>
                                                 {article.tags.split(',').map((tag: string) => (
                                                     <div >#{tag}  </div>
                                                 ))}

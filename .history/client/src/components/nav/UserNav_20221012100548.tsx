@@ -60,6 +60,7 @@ const UserNav = () => {
                             <a className='dropMenu'>Dash Board</a>
                             <div className='dropMenu' onClick={() => navigate(`/new`)}>Create Post</div>
                             <div className='dropMenu' onClick={() => navigate(`/readinglist`)}>Reading List</div>
+                            <a className='dropMenu'>Settings</a>
                         </div>
                         <div className='pb-2 space-y-1'>
                             <hr></hr>
