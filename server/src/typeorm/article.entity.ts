@@ -2,12 +2,15 @@ import { Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne, BaseEntit
 import { Comment } from './comment.entity';
 import { User } from './user.entity';
 @Entity()
-export class Article extends BaseEntity{
+export class Article extends BaseEntity {
     @PrimaryGeneratedColumn({
         type: 'bigint',
         name: 'article_id'
     })
     id: number;
+
+    @Column({ type: 'timestamptz' })
+    created_at: Date;
 
     @Column({
         nullable: false,
@@ -30,7 +33,7 @@ export class Article extends BaseEntity{
     @Column()
     coverImage: string | null
 
-    @OneToMany(() => Comment, comment => comment.article, {eager: true})
+    @OneToMany(() => Comment, comment => comment.article, { eager: true })
     comments: Comment[];
 
     @Column({

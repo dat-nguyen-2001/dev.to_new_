@@ -20,11 +20,27 @@ let ArticlesService = class ArticlesService {
     }
     async getArticles(req) {
         const tag = req.query.tag;
+        const search = req.query.search;
         if (tag) {
             const articles = await typeorm_1.Article.find({
                 where: {
                     tags: (0, typeorm_2.Like)(`%${tag}%`)
                 },
+                relations: {
+                    user: true,
+                    listed_users: true
+                }
+            });
+            return articles;
+        }
+        if (search) {
+            const articles = await typeorm_1.Article.find({
+                where: [
+                    { tags: (0, typeorm_2.Like)(`%${search}%`) },
+                    { content: (0, typeorm_2.Like)(`%${search}%`) },
+                    { title: (0, typeorm_2.Like)(`%${search}%`) },
+                    { user: { username: (0, typeorm_2.Like)(`%${search}%`) } },
+                ],
                 relations: {
                     user: true,
                     listed_users: true
@@ -63,6 +79,7 @@ let ArticlesService = class ArticlesService {
         const data = await this.jwtService.verify(token, { secret: process.env.ACCESS_TOKEN_SECRET });
         const email = data.email;
         const newArticle = new typeorm_1.Article();
+        newArticle.created_at = new Date();
         newArticle.title = title;
         newArticle.content = content;
         newArticle.tags = tags;
